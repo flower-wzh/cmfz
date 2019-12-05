@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wzh.dao.ArticleDao">
+    <resultMap id="BaseResultMap" type="Article">
+        <id column="id" property="id"></id>
+        <result column="title" property="title"></result>
+        <result column="img" property="img"></result>
+        <result column="publishDate" property="publishDate"></result>
+        <association property="guru" javaType="Guru">
+            <id column="guruId" property="id"></id>
+            <result column="nickName" property="nickName"></result>
+        </association>
+    </resultMap>
+
+    <select id="requireArticle" resultMap="BaseResultMap">
+        select
+        a.id id,a.title title,a.img img,a.publish_date publishDate,a.guru_id guruId,
+        g.nick_name nickName
+        from
+        article a left join guru g
+        on a.guru_id=g.id
+        where a.guru_id = "0"
+    </select>
+
+    <select id="focusArticle" resultMap="BaseResultMap">
+        select
+        a.id id,a.title title,a.img img,a.publish_date publishDate,a.guru_id guruId,
+        g.nick_name nickName
+        from
+        article a left join guru g
+        on a.guru_id=g.id
+        where a.guru_id in
+        <foreach collection="list" open="(" close=")" separator="," item="id">
+            #{id}
+        </foreach>
+    </select>
+
+</mapper>

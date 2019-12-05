@@ -1,0 +1,6 @@
+#NOTE: This is an Aether internal implementation file, its format can be changed without prior notice.
+#Wed Dec 04 13:30:18 CST 2019
+http\://maven.goeasy.io/content/repositories/releases/.lastUpdated=1575437417883
+http\://maven.goeasy.io/content/repositories/releases/.error=
+http\://maven.aliyun.com/nexus/content/groups/public/.error=Could not transfer artifact org.jboss.arquillian\:arquillian-bom\:pom\:1.1.11.Final from/to nexus-aliyun (http\://maven.aliyun.com/nexus/content/groups/public)\: Failed to transfer file\: http\://maven.aliyun.com/nexus/content/groups/public/org/jboss/arquillian/arquillian-bom/1.1.11.Final/arquillian-bom-1.1.11.Final.pom. Return code is\: 502 , ReasonPhrase\:Bad Gateway.
+@default-nexus-aliyun-http\://maven.aliyun.com/nexus/content/groups/public/.lastUpdated=1575437418100
