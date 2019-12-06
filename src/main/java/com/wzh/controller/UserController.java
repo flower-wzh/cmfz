@@ -169,11 +169,21 @@ public class UserController {
     @Autowired
     private RedisTemplate redisTemplate;
 
+    /**
+     * 关注上师
+     *
+     * @param uId
+     * @param guruId
+     * @return
+     */
     @RequestMapping("/notice")
-    public Map<String, Object> notice(String uId,String guruId) {
+    public Map<String, Object> notice(String uId, String guruId) {
         Map<String,Object> map = new HashMap<>();
         try {
+            //我的关注列表中加入上师
             redisTemplate.opsForSet().add("notice"+uId,guruId);
+            //上师的粉丝列表中加入用户
+            redisTemplate.opsForSet().add("fans" + guruId,uId);
             map.put("status",200);
             map.put("message","关注成功");
         } catch (Exception e) {
@@ -184,10 +194,16 @@ public class UserController {
         return map;
     }
 
+    /**
+     * 关注列表
+     * @param uId
+     * @return
+     */
     @RequestMapping("/myNotice")
     public Map<String, Object> myNotice(String uId) {
         Map<String,Object> map = new HashMap<>();
         try {
+            //查询出redis中的关注的上师列表
             List<String> strings = userService.focusGuru(uId);
             map.put("status",200);
             map.put("message","关注成功");
@@ -199,4 +215,13 @@ public class UserController {
         return map;
     }
 
+    /**
+     * 金刚道友
+     */
+    @RequestMapping("/friends")
+    public Map<String, Object> friends() {
+        Map<String, Object> map = new HashMap<>();
+
+        return map;
+    }
 }
